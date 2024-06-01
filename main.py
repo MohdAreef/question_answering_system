@@ -137,64 +137,65 @@ with st.container():
                     st.error("No documents available.")
         # Stop further execution
                     # return
-
-            def extract_relevant_sentences(document, query, top_n=2):
-            # Split the document into sentences
-                sentences = document.split('. ')
-
-                # Append query to the list of sentences
-                sentences.append(query)
-
-                # Vectorize the sentences and the query using TF-IDF
-                vectorizer = TfidfVectorizer().fit_transform(sentences)
-
-                # Compute cosine similarity between the query and all sentences
-                cosine_similarities = cosine_similarity(vectorizer[-1], vectorizer[:-1])
-
-                # Flatten the cosine similarities array and get indices of top_n sentences
-                similarities = cosine_similarities.flatten()
-                relevant_indices = similarities.argsort()[-top_n:][::-1]
-
-                # Extract the top_n relevant sentences
-                relevant_sentences = [sentences[i] for i in relevant_indices]
-
-                return relevant_sentences
-
-            # Example usage
-            doc=ranked_documents[0][0]
-            with open(f'./newcorpus/{doc}', 'r',encoding='utf-8') as file:
-                doc_text = file.read()
-            document=doc_text
-            # query = "DOES CHATGPT PROTECT PRIVACY"
-            formatted_sentences = []
-            # Extract and print only the first two relevant sentences
-            relevant_sentences = extract_relevant_sentences(document, question, top_n=1)
-            for idx, sentence in enumerate(relevant_sentences, 1):
-                print(f"{idx}. {sentence}")
-                formatted_sentence = f"{idx}. {sentence}"
-                formatted_sentences.append(formatted_sentence)
-            formatted_sentences_str = "\n".join(formatted_sentences)
-
-            if len(formatted_sentences_str.strip()) == 0:
-                # st.error("Please enter a valid question.")
-                st.text_area("Answer", value="Please enter a valid question.", height=300, disabled=True)
             else:
-                st.text_area("Answer", value=formatted_sentences_str, height=300, disabled=True)
-            print("formatted sentence-----------------------------------------------------------------")
-            print(formatted_sentences)
-            # answer=formatted_sentence[2]
-
-
-
-
-            
-
-            # answer = f"This is a placeholder answer for your question: '{question}'"
-            # st.text_area("Answer:", value=answer, height=200)
-        else:
-            st.error("Please enter a question.")
-
-# Run the app using the command: streamlit run app.py
+                    
+                    def extract_relevant_sentences(document, query, top_n=2):
+                    # Split the document into sentences
+                        sentences = document.split('. ')
+        
+                        # Append query to the list of sentences
+                        sentences.append(query)
+        
+                        # Vectorize the sentences and the query using TF-IDF
+                        vectorizer = TfidfVectorizer().fit_transform(sentences)
+        
+                        # Compute cosine similarity between the query and all sentences
+                        cosine_similarities = cosine_similarity(vectorizer[-1], vectorizer[:-1])
+        
+                        # Flatten the cosine similarities array and get indices of top_n sentences
+                        similarities = cosine_similarities.flatten()
+                        relevant_indices = similarities.argsort()[-top_n:][::-1]
+        
+                        # Extract the top_n relevant sentences
+                        relevant_sentences = [sentences[i] for i in relevant_indices]
+        
+                        return relevant_sentences
+        
+                    # Example usage
+                    doc=ranked_documents[0][0]
+                    with open(f'./newcorpus/{doc}', 'r',encoding='utf-8') as file:
+                        doc_text = file.read()
+                    document=doc_text
+                    # query = "DOES CHATGPT PROTECT PRIVACY"
+                    formatted_sentences = []
+                    # Extract and print only the first two relevant sentences
+                    relevant_sentences = extract_relevant_sentences(document, question, top_n=1)
+                    for idx, sentence in enumerate(relevant_sentences, 1):
+                        print(f"{idx}. {sentence}")
+                        formatted_sentence = f"{idx}. {sentence}"
+                        formatted_sentences.append(formatted_sentence)
+                    formatted_sentences_str = "\n".join(formatted_sentences)
+        
+                    if len(formatted_sentences_str.strip()) == 0:
+                        # st.error("Please enter a valid question.")
+                        st.text_area("Answer", value="Please enter a valid question.", height=300, disabled=True)
+                    else:
+                        st.text_area("Answer", value=formatted_sentences_str, height=300, disabled=True)
+                    print("formatted sentence-----------------------------------------------------------------")
+                    print(formatted_sentences)
+                    # answer=formatted_sentence[2]
+        
+        
+        
+        
+                    
+        
+                    # answer = f"This is a placeholder answer for your question: '{question}'"
+                    # st.text_area("Answer:", value=answer, height=200)
+                else:
+                    st.error("Please enter a question.")
+        
+        # Run the app using the command: streamlit run app.py
 
 
 
