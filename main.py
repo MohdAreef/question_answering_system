@@ -83,6 +83,7 @@ with st.container():
     
     # Input field for the question
     question = st.text_input("Your Question:")
+    st.write("*Note: Please ensure your question is related to the domain.*")
     # question="periodical payments order"
     # Button to submit the question
     if st.button("Ask"):
