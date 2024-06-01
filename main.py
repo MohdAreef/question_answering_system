@@ -133,7 +133,10 @@ with st.container():
             # Example
             ranked_documents = rank_documents(processed_query, documents)
             print(ranked_documents)
-
+            if len(ranked_documents) == 0:
+                    st.error("No documents available.")
+        # Stop further execution
+                    return
 
             def extract_relevant_sentences(document, query, top_n=2):
             # Split the document into sentences
