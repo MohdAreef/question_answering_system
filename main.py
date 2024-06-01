@@ -138,7 +138,6 @@ with st.container():
         # Stop further execution
                     # return
             else:
-                    
                     def extract_relevant_sentences(document, query, top_n=2):
                     # Split the document into sentences
                         sentences = document.split('. ')
