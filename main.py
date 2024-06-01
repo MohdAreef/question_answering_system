@@ -191,8 +191,8 @@ with st.container():
         
                     # answer = f"This is a placeholder answer for your question: '{question}'"
                     # st.text_area("Answer:", value=answer, height=200)
-                else:
-                    st.error("Please enter a question.")
+                # else:
+                    # st.error("Please enter a question.")
         
         # Run the app using the command: streamlit run app.py
 
