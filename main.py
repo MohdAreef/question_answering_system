@@ -171,7 +171,12 @@ with st.container():
                 formatted_sentence = f"{idx}. {sentence}"
                 formatted_sentences.append(formatted_sentence)
             formatted_sentences_str = "\n".join(formatted_sentences)
-            st.text_area("Answer", value=formatted_sentences_str, height=300, disabled=True)
+
+            if len(formatted_sentences_str.strip()) == 0:
+                # st.error("Please enter a valid question.")
+                st.text_area("Answer", value="Please enter a valid question.", height=300, disabled=True)
+            else:
+                st.text_area("Answer", value=formatted_sentences_str, height=300, disabled=True)
             print("formatted sentence-----------------------------------------------------------------")
             print(formatted_sentences)
             # answer=formatted_sentence[2]
