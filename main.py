@@ -136,7 +136,7 @@ with st.container():
             if len(ranked_documents) == 0:
                     st.error("No documents available.")
         # Stop further execution
-                    return
+                    # return
 
             def extract_relevant_sentences(document, query, top_n=2):
             # Split the document into sentences
