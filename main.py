@@ -134,7 +134,7 @@ with st.container():
             ranked_documents = rank_documents(processed_query, documents)
             print(ranked_documents)
             if len(ranked_documents) == 0:
-                    st.error("No documents available.")
+                    st.error("Please enter a valid question.")
         # Stop further execution
                     # return
             else:
