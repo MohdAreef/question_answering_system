@@ -36,7 +36,7 @@ def preprocess(text):
 
 index_term_dict = {}
 # import nltk
-corpus_root = './newcorpus'
+corpus_root = './latest_corpus'
 corpus_reader = nltk.corpus.PlaintextCorpusReader(corpus_root, '.*\.txt')
 
 fileids = corpus_reader.fileids()
@@ -121,7 +121,7 @@ with st.container():
                 ranked_docs = []
 
                 for doc in documents:
-                    with open(f'./newcorpus/{doc}', 'r',encoding='utf-8') as file:
+                    with open(f'./latest_corpus/{doc}', 'r',encoding='utf-8') as file:
                         doc_text = file.read()
                         doc_words = set(preprocess(doc_text))
                         score = jaccard_similarity(query_set, doc_words)
@@ -140,7 +140,12 @@ with st.container():
             else:
                     def extract_relevant_sentences(document, query, top_n=2):
                     # Split the document into sentences
-                        sentences = document.split('. ')
+                        # sentences = document.split('. ')
+                        document = re.sub(r'\n\s*', ' ', document)
+                            # Replace multiple spaces with a single space
+                        document = re.sub(r'\s+', ' ', document)
+                            # Split the document into sentences using regex to handle enumerations and other cases
+                        sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', document)    
         
                         # Append query to the list of sentences
                         sentences.append(query)
