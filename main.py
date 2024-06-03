@@ -173,7 +173,7 @@ with st.container():
                     # query = "DOES CHATGPT PROTECT PRIVACY"
                     formatted_sentences = []
                     # Extract and print only the first two relevant sentences
-                    relevant_sentences = extract_relevant_sentences(document, question, top_n=1)
+                    relevant_sentences = extract_relevant_sentences(document, question, top_n=2)
                     for idx, sentence in enumerate(relevant_sentences, 1):
                         print(f"{idx}. {sentence}")
                         formatted_sentence = f"{idx}. {sentence}"
