@@ -167,7 +167,7 @@ with st.container():
         
                     # Example usage
                     doc=ranked_documents[0][0]
-                    with open(f'./newcorpus/{doc}', 'r',encoding='utf-8') as file:
+                    with open(f'./latest_corpus/{doc}', 'r',encoding='utf-8') as file:
                         doc_text = file.read()
                     document=doc_text
                     # query = "DOES CHATGPT PROTECT PRIVACY"
